@@ -19,3 +19,9 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+
+includeBuild("external/gridlayout-compose") {
+    dependencySubstitution {
+        substitute(module("com.cheonjaeung.compose.grid:grid")).using(project(":grid"))
+    }
+}

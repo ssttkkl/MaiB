@@ -1,0 +1,3 @@
+[submodule "external/gridlayout-compose"]
+	path = external/gridlayout-compose
+	url = https://github.com/ssttkkl/gridlayout-compose.git

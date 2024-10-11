@@ -72,6 +72,8 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+
+            implementation("com.cheonjaeung.compose.grid:grid:2.0.0")
         }
 
         if (enableAndroid) {
@@ -179,9 +181,15 @@ if (enableDesktop) {
             mainClass = "io.ssttkkl.maib.MainKt"
 
             nativeDistributions {
-                targetFormats(TargetFormat.Dmg, TargetFormat.Exe, TargetFormat.AppImage)
                 packageName = "io.ssttkkl.maib"
                 packageVersion = "1.0.0"
+
+                val hostOs = System.getProperty("os.name")
+                when {
+                    hostOs == "Mac OS X" -> targetFormats(TargetFormat.Dmg)
+                    hostOs == "Linux" -> targetFormats(TargetFormat.AppImage)
+                    hostOs.startsWith("Windows") -> targetFormats(TargetFormat.Exe)
+                }
             }
         }
     }
